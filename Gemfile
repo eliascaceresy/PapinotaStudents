@@ -45,6 +45,7 @@ gem 'seed_migration'
 gem 'webpacker-react'
 gem "i18n-js"
 gem "rails-i18n", "~> 5.1"
+gem "jquery-rails"
 
 # Elasticsearch
 gem "elasticsearch-model", github: "elastic/elasticsearch-rails", branch: "6.x"
