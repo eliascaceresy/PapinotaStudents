@@ -4,8 +4,10 @@ import {
   SearchkitProvider,
   NoHits,
   Hits,
-  Pagination
+  Pagination,
+  SearchBox
 } from "searchkit";
+import { MDBContainer, MDBCard, MDBCardBody, MDBRow, MDBCol } from "mdbreact";
 import PropTypes from "prop-types";
 
 class StudentsIndex extends Component {
@@ -21,7 +23,24 @@ class StudentsIndex extends Component {
   render() {
     return (
       <SearchkitProvider searchkit={this.state.searchkit}>
-        <div>
+        <MDBContainer className="mt-5">
+          <MDBRow>
+            <MDBCol md="12">
+              <MDBCard>
+                <MDBCardBody>
+                  <MDBRow>
+                    <MDBCol sm="12" md="8">
+                      <SearchBox
+                        autofocus={true}
+                        searchOnChange={true}
+                        translations={{ "searchbox.placeholder": "Buscar" }}
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
           <Hits hitsPerPage={9} />
           <NoHits
             translations={{
@@ -41,7 +60,7 @@ class StudentsIndex extends Component {
               "pagination.next": "Siguiente"
             }}
           />
-        </div>
+        </MDBContainer>
       </SearchkitProvider>
     );
   }
