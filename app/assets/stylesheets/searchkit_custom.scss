@@ -1,0 +1,87 @@
+// Searchkit
+// Borde y color de placeholder input
+.sk-search-box {
+    border: 1px solid #d8d8d8;
+
+    input.sk-search-box__text {
+        color: black;
+    }
+
+    .sk-search-box__text,
+    .sk-search-box__text::-webkit-input-placeholder {
+        color: gray !important;
+    }
+}
+
+// margin de caja de filtros
+.sk-layout__filters {
+    margin: 0 auto 15px;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.sk-layout__filters {
+    margin: 0;
+}
+
+.sk-item-list-option__text {
+    color: black;
+}
+
+.sk-item-list-option__count {
+    color: black;
+}
+
+.sk-select {
+    width: 100%;
+}
+
+.sk-select {
+    position: relative;
+    cursor: pointer;
+    max-height: 30px;
+    display: inline-block;
+}
+
+.sk-select select {
+    background: #ffffff;
+    height: 36px;
+    width: 100%;
+}
+
+.sk-select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    padding: 6px 10px;
+    padding-right: 30px;
+    border: 1px solid #ccc;
+    outline: 0;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #000;
+}
+
+.sk-range-slider {
+    padding-bottom: 16px;
+    padding-right: 15px;
+}
+
+.sk-panel.filter--birthdays_months {
+    margin-top: -15px;
+}
+
+.date-filter .sk-input-filter {
+    width: 100%;
+    padding: 7px;
+    font-size: 14px;
+}
+
+.date-filter .react-datepicker__input-container {
+    width: 100%;
+    padding: 4px 0;
+}
