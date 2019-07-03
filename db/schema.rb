@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_145400) do
+ActiveRecord::Schema.define(version: 2019_07_03_151658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "personal_information", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "identification_number"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_personal_information_on_student_id"
+  end
 
   create_table "seed_migration_data_migrations", id: :serial, force: :cascade do |t|
     t.string "version"
@@ -21,4 +31,11 @@ ActiveRecord::Schema.define(version: 2019_07_03_145400) do
     t.datetime "migrated_on"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.integer "list_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "personal_information", "students"
 end
