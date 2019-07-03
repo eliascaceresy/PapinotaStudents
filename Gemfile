@@ -46,6 +46,10 @@ gem 'webpacker-react'
 gem "i18n-js"
 gem "rails-i18n", "~> 5.1"
 
+# Elasticsearch
+gem "elasticsearch-model", github: "elastic/elasticsearch-rails", branch: "6.x"
+gem "elasticsearch-rails", github: "elastic/elasticsearch-rails", branch: "6.x"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "annotate"
