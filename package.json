@@ -8,6 +8,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "searchkit": "^2.3.1-alpha.9",
     "webpacker-react": "^0.3.2"
   },
   "devDependencies": {
