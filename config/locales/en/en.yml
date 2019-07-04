@@ -1,0 +1,13 @@
+en:
+  en: "English"
+  es: "Spanish"
+  actions:
+    view: "See"
+    add: "Add"
+    download: "Download"
+    back: "Go Back"
+    save: "Save"
+    cancel: "Cancel"
+    continue: "Continue"
+    edit: "Edit"
+    export_all: "Export All"

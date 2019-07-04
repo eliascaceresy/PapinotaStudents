@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "students#index"
 
   namespace :api, defaults: { format: :json } do
-    resources :students, only: [:index] do
+    resources :students, only: [:index, :create, :update] do
       collection do
         post :_search
       end

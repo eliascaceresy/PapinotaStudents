@@ -8,6 +8,7 @@ module StudentSearchable
       mappings dynamic: "false" do
         indexes :id, type: :integer
         indexes :list_number, type: :integer
+        indexes :created_at, type: :date
         indexes :personal_information, type: :object do
           indexes :first_name, type: :text, analyzer: :full_name
           indexes :last_name, type: :text, analyzer: :full_name
@@ -22,6 +23,7 @@ module StudentSearchable
     student = {
       id: id,
       list_number: list_number,
+      created_at: created_at,
       personal_information: {
         first_name: personal_information&.first_name,
         last_name: personal_information&.last_name,

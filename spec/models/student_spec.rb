@@ -11,9 +11,6 @@ RSpec.describe Student, type: :model do
   end
 
   describe "Validations" do
-    it "should validate presence of personal_information" do
-      should validate_presence_of(:personal_information)
-    end
     it "should validate presence of list_number" do
       should validate_presence_of(:list_number)
     end

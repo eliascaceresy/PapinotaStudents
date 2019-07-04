@@ -1,0 +1,19 @@
+es:
+  activerecord:
+    models:
+      student:
+        one: "Estuadiante"
+        other: "Estudiantes"
+
+    errors:
+      models:
+        student:
+          attributes:
+            list_number:
+              blank: "Debe ingresar el N° de Lista"
+              taken: "Este número ya se encuentra asociado a otro Estudiante"
+              invalid: "Debe ingresar un número"
+
+    attributes:
+      student:
+        list_number: "N° Lista"

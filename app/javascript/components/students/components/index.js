@@ -5,11 +5,14 @@ import {
   NoHits,
   Hits,
   Pagination,
-  SearchBox
+  SearchBox,
+  SortingSelector
 } from "searchkit";
 import { MDBContainer, MDBCard, MDBCardBody, MDBRow, MDBCol } from "mdbreact";
 import PropTypes from "prop-types";
 import StudentsHits from "./hits";
+import StudentsForm from "./form";
+import { reloadSearch } from "../functions";
 
 class StudentsIndex extends Component {
   constructor(props) {
@@ -20,6 +23,8 @@ class StudentsIndex extends Component {
         httpHeaders: { "X-CSRF-TOKEN": window.PapinotasStudents.token }
       })
     };
+
+    this.reloadSearch = reloadSearch.bind(this);
   }
   render() {
     return (
@@ -29,7 +34,20 @@ class StudentsIndex extends Component {
             <MDBCol md="12">
               <MDBCard>
                 <MDBCardBody>
-                  <h3>Listado de Estudiantes</h3>
+                  <MDBRow>
+                    <MDBCol sm="12" md="8">
+                      <h3>Listado de Estudiantes</h3>
+                    </MDBCol>
+                    <MDBCol sm="12" md="4">
+                      <StudentsForm
+                        color="success"
+                        buttonLabel="Agregar"
+                        bg="bg-success"
+                        title="Nuevo Estudiante"
+                        reloadSearch={this.reloadSearch}
+                      />
+                    </MDBCol>
+                  </MDBRow>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -39,7 +57,7 @@ class StudentsIndex extends Component {
               <MDBCard>
                 <MDBCardBody>
                   <MDBRow>
-                    <MDBCol sm="12" md="8">
+                    <MDBCol sm="8" md="8">
                       <SearchBox
                         autofocus={true}
                         searchOnChange={true}
@@ -53,6 +71,23 @@ class StudentsIndex extends Component {
                           "personal_information.first_name",
                           "personal_information.last_name",
                           "personal_information.full_name"
+                        ]}
+                      />
+                    </MDBCol>
+                    <MDBCol sm="1" md="1" />
+                    <MDBCol sm="3" md="2">
+                      <SortingSelector
+                        options={[
+                          {
+                            label: "Fecha creación reciente",
+                            field: "created_at",
+                            order: "desc"
+                          },
+                          {
+                            label: "Fecha creación antigua",
+                            field: "created_at",
+                            order: "asc"
+                          }
                         ]}
                       />
                     </MDBCol>
