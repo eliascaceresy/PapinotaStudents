@@ -119,7 +119,8 @@ class StudentsForm extends Component {
                     style={{
                       marginTop: "-23px",
                       fontSize: "10px",
-                      color: "grey"
+                      color: "grey",
+                      textAlign: "left"
                     }}
                   >
                     Formato: 11222333-4 (sin puntos)
