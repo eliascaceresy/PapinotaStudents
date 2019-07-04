@@ -1,0 +1,83 @@
+en:
+  activerecord:
+    #Errors
+    errors:
+      format: "%{attribute} %{message}"
+      messages:
+        accepted: "must be accepted"
+        blank: "can't be blank"
+        valid: "must be valid"
+        present: "must be blank"
+        taken: "already in use"
+        confirmation: "doesn't match"
+        empty: "can't be empty"
+        equal_to: "must be equal to %{count}"
+        even: "must be even"
+        odd: "must be odd"
+        exclusion: "its reserved"
+        greater_than: "must be greater than %{count}"
+        greater_than_or_equal_to: "must greater or equal to %{count}"
+        inclusion: "is not included on the list"
+        invalid: "it's invalid"
+        less_than: "must be lesset than %{count}"
+        less_than_or_equal_to: "must be lesser than or equal to %{count}"
+        not_a_number: "it's not a number"
+        not_an_integer: "must be integer"
+        record_invalid: "the validation failed: %{errors}"
+        restrict_dependent_destroy:
+          one: "The record can not be deleted because there is a dependant %{record}"
+          many: "The record can not be deleted because there are dependants %{record}"
+        too_long: "it's too large (%{count} max chars)"
+        too_short: "it's too short (%{count} min chars)"
+        wrong_length: "does not have the correct length (%{count} exact chars)"
+        other_than: "it must be different from %{count}"
+    #Enums
+    enums:
+      personal/information:
+        genders:
+          female: "Female"
+          male: "Male"
+        civil_statuses:
+          single: "Single"
+          married: "Married"
+          divorced: "Diivorced"
+          widowed: "Widowed"
+        working_statuses:
+          searching: "Searching"
+          listening: "Listening Offerts"
+          not_interest: "Not Interest"
+        knowing_about_us:
+          contact_network: "Contact Network"
+          social_networks: "Social Network"
+          other: "Other"
+        has_transfer_availabilities:
+          inside: "Inside of Chile"
+          outside: "Ourside of Chile"
+          not: "No"
+        referred_infos:
+          referred: "Referred"
+          a: "A"
+          aaa: "AAA"
+      personal/education:
+        statuses:
+          graduated: "Graduated"
+          in_progress: "In Progress"
+          accredited: "Accredited"
+          freeze: "Frozen Studies"
+      personal/activity:
+        activity_types:
+          likedin_contact: "Linkedin Contact"
+          phone_contact: "Phone Contact"
+          email_contact: "Email Contact"
+          screening: "Screening"
+          cdb: "Interview Competitions (CDB)"
+          chief_interview: "Boss Interview"
+          traking: "Traking"
+          register: "Register"
+          assignment_process: "Assignment to a Process"
+        activity_methods:
+          in_person: "In Person"
+          by_phone: "By Phone"
+          by_email: "By Email"
+          virtual: "Virtual"
+          other_method: "Other"

@@ -9,4 +9,27 @@ class Api::StudentsController < ApplicationController
   def index
   end
 
+  def create
+    @student = Student.new(student_params)
+    if @student.save
+      render json: @student.as_json, status: 201
+    else
+      render json: @student.errors, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+    def student_params
+      params.require(:student).permit(
+        :list_number,
+        personal_information_attributes: [
+          :id,
+          :first_name,
+          :last_name,
+          :identification_number
+        ]
+      )
+    end
+
 end

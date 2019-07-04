@@ -4,7 +4,7 @@ class Personal::Information < ApplicationRecord
   validates :student, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :identification_number, presence: true, uniqueness: true
+  validates :identification_number, presence: true, uniqueness: true, rut: true
 
   def full_name
     "#{first_name} #{last_name}"
