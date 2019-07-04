@@ -1,22 +1,8 @@
 import { saveStudent } from "./axios";
 
 export function toggle() {
-  let { student } = this.state;
-
-  if (!this.state.modal) {
-    student.list_number.value = "";
-    student.list_number.errors = [];
-    student.first_name.value = "";
-    student.first_name.errors = [];
-    student.last_name.value = "";
-    student.last_name.errors = [];
-    student.identification_number.value = "";
-    student.identification_number.errors = [];
-  }
-
   this.setState({
-    modal: !this.state.modal,
-    student: student
+    modal: !this.state.modal
   });
 }
 
@@ -41,6 +27,10 @@ export function serializeData() {
 
   formData.append("student[id]", student.id.value);
   formData.append("student[list_number]", student.list_number.value);
+  formData.append(
+    "student[personal_information_attributes][id]",
+    this.props.student.personal_information.id
+  );
   formData.append(
     "student[personal_information_attributes][first_name]",
     student.first_name.value
@@ -75,6 +65,9 @@ export function handleSubmit() {
     if (response.status === 201) {
       _this.toggle();
       _this.props.reloadSearch();
+    } else if (response.status === 200) {
+      _this.toggle();
+      _this.props.updateHit(response.data);
     } else if (response.status === 422) {
       _this.setErrors(response.data);
     }
@@ -86,4 +79,8 @@ export function reloadSearch() {
   setTimeout(function() {
     searchkit.reloadSearch();
   }, 1000);
+}
+
+export function updateHit(hit) {
+  this.setState({ student: hit });
 }

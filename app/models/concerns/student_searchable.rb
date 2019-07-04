@@ -25,6 +25,7 @@ module StudentSearchable
       list_number: list_number,
       created_at: created_at,
       personal_information: {
+        id: personal_information&.id,
         first_name: personal_information&.first_name,
         last_name: personal_information&.last_name,
         full_name: personal_information&.full_name,

@@ -1,5 +1,5 @@
 class Api::StudentsController < ApplicationController
-
+  before_action :set_student, only: [:update]
   def _search
     atts = params.except(:student, :action, :controller, :format).permit!
     response_elastic = Student.query(atts)
@@ -12,7 +12,15 @@ class Api::StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      render json: @student.as_json, status: 201
+      render json: @student.as_indexed_json, status: 201
+    else
+      render json: @student.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @student.update(student_params)
+      render json: @student.as_indexed_json, status: 200
     else
       render json: @student.errors, status: :unprocessable_entity
     end
@@ -30,6 +38,10 @@ class Api::StudentsController < ApplicationController
           :identification_number
         ]
       )
+    end
+
+    def set_student
+      @student = Student.find(params[:id])
     end
 
 end

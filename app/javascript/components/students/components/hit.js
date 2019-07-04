@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { MDBCard, MDBCardBody, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import PropTypes from "prop-types";
+import StudentsForm from "./form";
+import { updateHit } from "../functions";
 
 class StudentsHit extends Component {
   constructor(props) {
@@ -9,6 +11,8 @@ class StudentsHit extends Component {
     this.state = {
       student: this.props.hit._source
     };
+
+    this.updateHit = updateHit.bind(this);
   }
 
   render() {
@@ -29,6 +33,19 @@ class StudentsHit extends Component {
             </MDBRow>
             <MDBRow>
               <MDBCol md="12">N° Lista: {student.list_number}</MDBCol>
+            </MDBRow>
+            <MDBRow>
+              <MDBCol>
+                <StudentsForm
+                  color="warning"
+                  outline={true}
+                  buttonLabel="Editar"
+                  bg="bg-warning"
+                  title="Editar Estudiante"
+                  student={student}
+                  updateHit={this.updateHit}
+                />
+              </MDBCol>
             </MDBRow>
           </MDBCardBody>
         </MDBCard>
