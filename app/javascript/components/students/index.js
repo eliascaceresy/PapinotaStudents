@@ -9,6 +9,7 @@ import {
 } from "searchkit";
 import { MDBContainer, MDBCard, MDBCardBody, MDBRow, MDBCol } from "mdbreact";
 import PropTypes from "prop-types";
+import StudentsHits from "./hits";
 
 class StudentsIndex extends Component {
   constructor(props) {
@@ -28,12 +29,31 @@ class StudentsIndex extends Component {
             <MDBCol md="12">
               <MDBCard>
                 <MDBCardBody>
+                  <h3>Listado de Estudiantes</h3>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow className="mt-3">
+            <MDBCol md="12">
+              <MDBCard>
+                <MDBCardBody>
                   <MDBRow>
                     <MDBCol sm="12" md="8">
                       <SearchBox
                         autofocus={true}
                         searchOnChange={true}
                         translations={{ "searchbox.placeholder": "Buscar" }}
+                        queryFields={[
+                          "personal_information.first_name",
+                          "personal_information.last_name"
+                        ]}
+                        prefixQueryFields={[
+                          "personal_information.identification_number",
+                          "personal_information.first_name",
+                          "personal_information.last_name",
+                          "personal_information.full_name"
+                        ]}
                       />
                     </MDBCol>
                   </MDBRow>
@@ -41,7 +61,7 @@ class StudentsIndex extends Component {
               </MDBCard>
             </MDBCol>
           </MDBRow>
-          <Hits hitsPerPage={9} />
+          <Hits hitsPerPage={12} listComponent={<StudentsHits />} />
           <NoHits
             translations={{
               "NoHits.NoResultsFound":
@@ -53,13 +73,17 @@ class StudentsIndex extends Component {
                 "No se encontraron resultados para {query}. Quisiste decir {suggestion} ?"
             }}
           />
-          <Pagination
-            showNumbers={true}
-            translations={{
-              "pagination.previous": "Anterior",
-              "pagination.next": "Siguiente"
-            }}
-          />
+          <MDBRow className="mt-3">
+            <MDBCol md="12">
+              <Pagination
+                showNumbers={true}
+                translations={{
+                  "pagination.previous": "Anterior",
+                  "pagination.next": "Siguiente"
+                }}
+              />
+            </MDBCol>
+          </MDBRow>
         </MDBContainer>
       </SearchkitProvider>
     );
