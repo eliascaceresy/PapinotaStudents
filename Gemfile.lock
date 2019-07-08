@@ -9,6 +9,17 @@ GIT
       hashie
     elasticsearch-rails (6.0.0)
 
+GIT
+  remote: https://github.com/randym/axlsx.git
+  revision: c8ac844572b25fda358cc01d2104720c4c42f450
+  ref: c8ac844
+  specs:
+    axlsx (2.1.0.pre)
+      htmlentities (~> 4.3.4)
+      mimemagic (~> 0.3)
+      nokogiri (>= 1.6.6)
+      rubyzip (>= 1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,6 +72,12 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    axlsx_rails (0.5.2)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
+    axlsx_styler (0.2.0)
+      activesupport (>= 3.1)
+      axlsx (>= 2.0, < 4)
     bcrypt (3.1.13)
     bindex (0.7.0)
     bootsnap (1.4.4)
@@ -88,6 +105,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crass (1.0.4)
     devise (4.6.2)
       bcrypt (~> 3.0)
@@ -104,6 +122,8 @@ GEM
     elasticsearch-transport (7.2.0)
       faraday
       multi_json
+    email_validator (2.0.1)
+      activemodel
     erubi (1.8.0)
     execjs (2.7.0)
     factory_bot (5.0.2)
@@ -118,6 +138,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (3.6.0)
+    htmlentities (4.3.4)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     i18n-js (3.3.0)
@@ -156,6 +177,8 @@ GEM
     public_suffix (3.1.1)
     puma (3.12.1)
     rack (2.0.7)
+    rack-protection (2.0.5)
+      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -195,6 +218,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redis (4.1.2)
     regexp_parser (1.5.1)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -235,6 +259,11 @@ GEM
       rubyzip (~> 1.2, >= 1.2.2)
     shoulda-matchers (4.1.0)
       activesupport (>= 4.2.0)
+    sidekiq (5.2.7)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (>= 1.5.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -284,6 +313,9 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  axlsx!
+  axlsx_rails
+  axlsx_styler
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
@@ -292,6 +324,7 @@ DEPENDENCIES
   devise
   elasticsearch-model!
   elasticsearch-rails!
+  email_validator
   factory_bot_rails
   ffaker
   i18n-js
@@ -304,10 +337,12 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 5.1)
   rspec-rails (~> 3.8)
+  rubyzip (>= 1.2.1)
   sass-rails (~> 5.0)
   seed_migration
   selenium-webdriver
   shoulda-matchers
+  sidekiq
   slim
   spring
   spring-watcher-listen (~> 2.0.0)

@@ -6,12 +6,22 @@ import {
   Hits,
   Pagination,
   SearchBox,
-  SortingSelector
+  SortingSelector,
+  HitsStats
 } from "searchkit";
-import { MDBContainer, MDBCard, MDBCardBody, MDBRow, MDBCol } from "mdbreact";
+import {
+  MDBContainer,
+  MDBCard,
+  MDBCardBody,
+  MDBRow,
+  MDBCol,
+  MDBBtnGroup,
+  MDBBtn
+} from "mdbreact";
 import PropTypes from "prop-types";
 import StudentsHits from "./hits";
 import StudentsForm from "./form";
+import StudentsExport from "./export";
 import { reloadSearch } from "../functions";
 
 class StudentsIndex extends Component {
@@ -37,15 +47,6 @@ class StudentsIndex extends Component {
                   <MDBRow>
                     <MDBCol sm="12" md="8">
                       <h3>Listado de Estudiantes</h3>
-                    </MDBCol>
-                    <MDBCol sm="12" md="4">
-                      <StudentsForm
-                        color="success"
-                        buttonLabel="Agregar"
-                        bg="bg-success"
-                        title="Nuevo Estudiante"
-                        reloadSearch={this.reloadSearch}
-                      />
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>
@@ -73,6 +74,12 @@ class StudentsIndex extends Component {
                           "personal_information.full_name"
                         ]}
                       />
+                      <HitsStats
+                        translations={{
+                          "hitstats.results_found":
+                            "{hitCount} resultados encontrados en {timeTaken}ms"
+                        }}
+                      />
                     </MDBCol>
                     <MDBCol sm="1" md="1" />
                     <MDBCol sm="3" md="2">
@@ -92,6 +99,31 @@ class StudentsIndex extends Component {
                       />
                     </MDBCol>
                   </MDBRow>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow className="mt-3">
+            <MDBCol ms="12">
+              <MDBCard>
+                <MDBCardBody>
+                  <MDBBtnGroup>
+                    <StudentsForm
+                      color="success"
+                      buttonLabel="Agregar Estudiante"
+                      outline={true}
+                      bg="bg-success"
+                      title="Nuevo Estudiante"
+                      reloadSearch={this.reloadSearch}
+                    />
+                    <StudentsExport
+                      color="info"
+                      buttonLabel="Exportar Estudiantes"
+                      outline={true}
+                      bg="bg-info"
+                      title="Nómina de Estudiantes"
+                    />
+                  </MDBBtnGroup>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>

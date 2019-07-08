@@ -38,4 +38,38 @@ RSpec.describe Api::StudentsController, type: :controller do
     end
   end
 
+  describe "POST #export_students" do
+    let(:expected_response) {
+      response_body = JSON.parse(response.body)
+      expect(response).to have_http_status 422
+      expect(response_body["errors"]).to eq ["Ingrese un email válido"]
+    }
+
+    context "when user email is not present" do
+      let(:user_email) { "" }
+      it "should respond with 422" do
+      end
+    end
+    context "when user email is present" do
+      context "and email is not valid" do
+        let(:user_email) { "asd.asd.asd.cl" }
+        it "should respond with 422" do
+        end
+      end
+      context "and email is valid" do
+        let(:user_email) { FFaker::Internet.email }
+        let(:expected_response) {
+          expect(response).to have_http_status 200
+        }
+        it "should respond with 200" do
+        end
+      end
+    end
+
+    after :each do
+      post :export_students, params: { user_email: user_email }
+      expected_response
+    end
+  end
+
 end
