@@ -62,4 +62,8 @@ Rails.application.configure do
   # Elasticsearch Config
   config.hostname = "papinotas_student"
   config.elastic_server = "localhost:9200"
+
+  # Mailer config
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 end

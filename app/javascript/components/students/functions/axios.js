@@ -28,3 +28,21 @@ export function saveStudent(data, callback) {
       callback(err.response);
     });
 }
+
+export function exportStudents(data, callback) {
+  var promise = axios({
+    method: "post",
+    url: "/api/students/export_students",
+    data: data,
+    headers: {
+      "X-CSRF-TOKEN": window.PapinotasStudents.token
+    }
+  });
+  promise
+    .then(response => {
+      callback(response);
+    })
+    .catch(err => {
+      callback(err.response);
+    });
+}

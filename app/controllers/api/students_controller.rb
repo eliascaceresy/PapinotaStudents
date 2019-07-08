@@ -26,6 +26,15 @@ class Api::StudentsController < ApplicationController
     end
   end
 
+  def export_students
+    if params[:user_email].present? && EmailValidator.valid?(params[:user_email])
+      Student::ExportJob.perform_later(params[:user_email])
+      render json: { message: "" }, status: 200
+    else
+      render json: { errors: ["Ingrese un email válido"] }, status: :unprocessable_entity
+    end
+  end
+
   private
 
     def student_params

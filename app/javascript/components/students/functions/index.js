@@ -1,4 +1,4 @@
-import { saveStudent } from "./axios";
+import { saveStudent, exportStudents } from "./axios";
 
 export function toggle() {
   this.setState({
@@ -25,12 +25,15 @@ export function serializeData() {
   var formData = new FormData();
   const { student } = this.state;
 
+  if (this.props.student) {
+    formData.append(
+      "student[personal_information_attributes][id]",
+      this.props.student.personal_information.id
+    );
+  }
+
   formData.append("student[id]", student.id.value);
   formData.append("student[list_number]", student.list_number.value);
-  formData.append(
-    "student[personal_information_attributes][id]",
-    this.props.student.personal_information.id
-  );
   formData.append(
     "student[personal_information_attributes][first_name]",
     student.first_name.value
@@ -83,4 +86,26 @@ export function reloadSearch() {
 
 export function updateHit(hit) {
   this.setState({ student: hit });
+}
+
+export function handleExport() {
+  const _this = this;
+  let { user_email } = this.state;
+  var formData = new FormData();
+  formData.append("user_email", user_email.value);
+  exportStudents(formData, response => {
+    if (response.status === 200) {
+      _this.toggle();
+    } else if (response.status === 422) {
+      user_email.errors = response.data.errors;
+      _this.setState({ user_email });
+    }
+  });
+}
+
+export function handleEmail(e) {
+  let { user_email } = this.state;
+  user_email.value = e.target.value;
+  user_email.errors = [];
+  this.setState({ user_email });
 }
