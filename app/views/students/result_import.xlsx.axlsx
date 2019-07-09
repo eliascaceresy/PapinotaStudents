@@ -1,0 +1,50 @@
+require "axlsx_styler"
+require "axlsx"
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Nomina Estudiantes", page_margins: { left: 0.2, right: 0.2, top: 0.2, bottom: 0.2 }, page_setup: { fit_to_width: 1, orientation: :landscape, paper_width: "216mm", paper_height: "330mm" }, print_options: { horizontal_centered: true }) do |sheet|
+
+  sheet.add_row ["", "", "", "", "", ""]
+  sheet.add_row ["", "", "", "", "", ""]
+  sheet.add_row ["", "", "", "", "", ""]
+  sheet.add_row ["", "", "", "Resultado Importación Nómina de Estudiantes", "", ""], height: 30
+  sheet.add_row ["", "", "", "", "", ""]
+  sheet.add_row ["", "", "", "", "", ""]
+  sheet.add_row ["", "", "",
+                 "N° Lista",
+                 "Nombres",
+                 "Apellidos",
+                 "RUT",
+                 "Errores"
+                ]
+
+  @students.each do |student|
+    errors = student[:errors].messages.map{ |e| e[1]}
+    sheet.add_row ["", "", "",
+                    student[:student][:list_number],
+                    student[:student][:personal_information_attributes][:first_name],
+                    student[:student][:personal_information_attributes][:last_name],
+                    student[:student][:personal_information_attributes][:identification_number],
+                    errors.join("\r")
+                  ], height: 10 + (errors.length * 10)
+  end
+  ############################################## GENERAL STYLES ##############################################
+  sheet.column_widths nil, nil, nil, 15, 20, 15, 15
+
+  sheet.merge_cells "D4:F4"
+  sheet.add_border "D4:F4", [:bottom]
+  sheet.add_style "D4:F4", b: true, sz: 12, fg_color: "FF", bg_color: "33b5e5", alignment: { horizontal: :center }
+
+  sheet.auto_filter = "D7:G7"
+  sheet.add_style "D7:H7", b: true,
+                            sz: 12,
+                            bg_color: "33b5e5",
+                            fg_color: "FF",
+                            border: Axlsx::STYLE_THIN_BORDER,
+                            alignment: { horizontal: :center }
+
+  sheet.add_style "D8:H#{@students.count + 7}", sz: 11,
+                                                          border: { style: :thin, color: "00" },
+                                                          alignment: { horizontal: :left,
+                                                                       vertical: :center }
+end

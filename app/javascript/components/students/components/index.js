@@ -22,6 +22,7 @@ import PropTypes from "prop-types";
 import StudentsHits from "./hits";
 import StudentsForm from "./form";
 import StudentsExport from "./export";
+import StudentsImport from "./import";
 import { reloadSearch } from "../functions";
 
 class StudentsIndex extends Component {
@@ -110,19 +111,14 @@ class StudentsIndex extends Component {
                   <MDBBtnGroup>
                     <StudentsForm
                       color="success"
-                      buttonLabel="Agregar Estudiante"
                       outline={true}
-                      bg="bg-success"
-                      title="Nuevo Estudiante"
+                      buttonLabel="Agregar Estudiante"
+                      bg="bg-warning"
+                      title="Agregar Estudiante"
                       reloadSearch={this.reloadSearch}
                     />
-                    <StudentsExport
-                      color="info"
-                      buttonLabel="Exportar Estudiantes"
-                      outline={true}
-                      bg="bg-info"
-                      title="Nómina de Estudiantes"
-                    />
+                    <StudentsExport />
+                    <StudentsImport />
                   </MDBBtnGroup>
                 </MDBCardBody>
               </MDBCard>

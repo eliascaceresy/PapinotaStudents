@@ -33,35 +33,43 @@ class StudentsExport extends Component {
     let { user_email } = this.state;
     return (
       <div>
-        <div className={this.props.buttonPosition}>
+        <div>
           <MDBBtn
-            color={this.props.color}
+            color="info"
             size="sm"
-            outline={this.props.outline}
+            outline
             onClick={this.toggle}
             disabled={this.props.disabled}
           >
-            {this.props.buttonLabel}
+            Exportar Estudiantes
           </MDBBtn>
         </div>
         <MDBModal size="lg" isOpen={this.state.modal} toggle={this.toggle}>
-          <MDBModalHeader
-            toggle={this.toggle}
-            className={"white-text " + this.props.bg}
-          >
-            {this.props.title}
+          <MDBModalHeader toggle={this.toggle} className={"white-text bg-info"}>
+            Exportar Nómina de Estudiantes
           </MDBModalHeader>
           <MDBModalBody>
             <MDBRow>
               <MDBCol md="6">
-                <p>Ingrese su email para enviar la Nómina de Estudiantes</p>
-                <FieldWrapper errors={user_email.errors}>
+                <FieldWrapper
+                  errors={user_email.errors}
+                  styleMargin={{ marginTop: "-15px" }}
+                >
                   <MDBInput
                     label="Email"
                     type="email"
                     value={user_email.value}
                     onChange={e => this.handleEmail(e)}
                   />
+                  <p
+                    style={{
+                      marginTop: "-25px",
+                      fontSize: "12px",
+                      color: "grey"
+                    }}
+                  >
+                    Ingrese su email para enviar la Nómina de Estudiantes
+                  </p>
                 </FieldWrapper>
               </MDBCol>
             </MDBRow>
@@ -70,8 +78,13 @@ class StudentsExport extends Component {
             <MDBBtn size="sm" color="danger" onClick={this.toggle}>
               Cancelar
             </MDBBtn>
-            <MDBBtn size="sm" color="success" onClick={this.handleExport}>
-              Enviar
+            <MDBBtn
+              size="sm"
+              color="success"
+              onClick={this.handleExport}
+              className="ml-2"
+            >
+              Exportar
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>

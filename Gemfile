@@ -39,7 +39,6 @@ gem "jbuilder", "~> 2.5"
 gem "bootsnap", ">= 1.1.0", require: false
 
 # Custom Gems
-gem "devise"
 gem "slim"
 gem "seed_migration"
 gem "webpacker-react"
@@ -52,6 +51,7 @@ gem "axlsx_rails"
 gem "axlsx_styler"
 gem "email_validator"
 gem "sidekiq"
+gem "roo", "~> 2.8.0"
 
 # Elasticsearch
 gem "elasticsearch-model", github: "elastic/elasticsearch-rails", branch: "6.x"
