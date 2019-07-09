@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       collection do
         post :_search
         post :export_students
+        post :import_students
       end
     end
   end

@@ -46,3 +46,21 @@ export function exportStudents(data, callback) {
       callback(err.response);
     });
 }
+
+export function importStudents(data, callback) {
+  var promise = axios({
+    method: "post",
+    url: "/api/students/import_students",
+    data: data,
+    headers: {
+      "X-CSRF-TOKEN": window.PapinotasStudents.token
+    }
+  });
+  promise
+    .then(response => {
+      callback(response);
+    })
+    .catch(err => {
+      callback(err.response);
+    });
+}

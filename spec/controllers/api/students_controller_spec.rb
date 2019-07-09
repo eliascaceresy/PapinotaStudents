@@ -72,4 +72,37 @@ RSpec.describe Api::StudentsController, type: :controller do
     end
   end
 
+  describe "POST #import_students" do
+    context "when user does not enter email and file" do
+      let(:user_email) { "" }
+      let(:students_document) { "" }
+      let(:expected_response) {
+        response_body = JSON.parse(response.body)
+        expect(response).to have_http_status 422
+        expect(response_body["students_document"]).to eq ["Debe adjuntar un documento válido"]
+        expect(response_body["user_email"]).to eq ["Ingrese un email válido"]
+      }
+
+      it "should respond with 422" do
+      end
+    end
+    context "when user enters all data" do
+      let(:user_email) { FFaker::Internet.email }
+      let(:students_document) { Rack::Test::UploadedFile.new(Rails.root.join("spec/tmp/Nomina Estudiantes.xlsx"), "file/xlsx") }
+      let(:expected_response) {
+        response_body = JSON.parse(response.body)
+        expect(response).to have_http_status 200
+        expect(response_body["message"]).to eq "Se notificará via email cuando el archivo se procese"
+      }
+
+      it "should respond with success" do
+      end
+    end
+
+    after :each do
+      post :import_students, params: { user_email: user_email, students_document: students_document }
+      expected_response
+    end
+  end
+
 end

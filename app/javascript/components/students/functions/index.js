@@ -1,4 +1,4 @@
-import { saveStudent, exportStudents } from "./axios";
+import { saveStudent, exportStudents, importStudents } from "./axios";
 
 export function toggle() {
   this.setState({
@@ -108,4 +108,24 @@ export function handleEmail(e) {
   user_email.value = e.target.value;
   user_email.errors = [];
   this.setState({ user_email });
+}
+
+export function handleImport() {
+  const _this = this;
+  let { user_email, students_document } = this.state;
+  var formData = new FormData();
+  formData.append("user_email", user_email.value);
+  if (students_document.value) {
+    formData.append("students_document", students_document.value);
+  }
+  importStudents(formData, response => {
+    if (response.status === 200) {
+      _this.toggle();
+    } else if (response.status === 422) {
+      console.log(response);
+      user_email.errors = response.data.user_email;
+      students_document.errors = response.data.students_document;
+      _this.setState({ user_email, students_document });
+    }
+  });
 }

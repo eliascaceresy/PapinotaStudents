@@ -62,7 +62,7 @@ class StudentsForm extends Component {
     const { student } = this.state;
     return (
       <div>
-        <div className={this.props.buttonPosition}>
+        <div>
           <MDBBtn
             color={this.props.color}
             size="sm"
@@ -76,7 +76,7 @@ class StudentsForm extends Component {
         <MDBModal size="lg" isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader
             toggle={this.toggle}
-            className={"white-text " + this.props.bg}
+            className={"white-text bg-success"}
           >
             {this.props.title}
           </MDBModalHeader>
@@ -143,7 +143,12 @@ class StudentsForm extends Component {
             <MDBBtn size="sm" color="danger" onClick={this.toggle}>
               Cancelar
             </MDBBtn>
-            <MDBBtn size="sm" color="success" onClick={this.handleSubmit}>
+            <MDBBtn
+              size="sm"
+              color="success"
+              onClick={this.handleSubmit}
+              className="ml-2"
+            >
               Guardar
             </MDBBtn>
           </MDBModalFooter>
