@@ -1,0 +1,24 @@
+es:
+  activerecord:
+    models:
+      personal/information:
+        one: "Información Personal"
+
+    errors:
+      models:
+        personal/information:
+          attributes:
+            first_name:
+              blank: "Debe ingresar el Nombre"
+            last_name:
+              blank: "Debe ingresar los Apellidos"
+            identification_number:
+              blank: "Debe ingresar el RUT"
+              invalid: "Debe ingresar un RUT válido"
+              taken: "Este RUT ya esta asociado a otro Estudiante"
+
+    attributes:
+      personal/information:
+        first_name: "Nombres"
+        last_name: "Apellidos"
+        identification_number: "RUT"

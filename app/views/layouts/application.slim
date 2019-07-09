@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title
+      | PapinotaStudents
+    = csrf_meta_tags
+    = csp_meta_tag
+    = favicon_link_tag "icon.png"
+    link href="https://cdn.jsdelivr.net/searchkit/2.0.0/theme.css" rel="stylesheet" type="text/css" /
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'components'
+  body
+    = yield

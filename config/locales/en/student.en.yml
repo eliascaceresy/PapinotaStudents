@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    models:
+      student:
+        one: "Student"
+        other: "Students"
+
+    errors:
+      models:
+        student:
+          attributes:
+            list_number:
+              taken: "This Number is already associated to the other Student"
+              invalid: "Must entry a number"
+
+    attributes:
+      student:
+        list_number: "List Number"

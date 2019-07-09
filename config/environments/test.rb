@@ -43,4 +43,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Elasticsearch Config
+  config.hostname = "papinotas_student"
+  config.elastic_server = "localhost:9200"
 end

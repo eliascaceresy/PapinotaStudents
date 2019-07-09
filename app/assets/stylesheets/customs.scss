@@ -1,0 +1,14 @@
+ul.errors_list {
+  color: red;
+  list-style: none;
+  padding: 0;
+  margin-top: -24px;
+
+  li {
+    list-style: square;
+    padding-left: 1px;
+    list-style-position: inside;
+    font-size: 12px;
+    text-align: left;
+  }
+}
