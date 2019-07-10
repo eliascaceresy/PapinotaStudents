@@ -23,7 +23,8 @@ import StudentsHits from "./hits";
 import StudentsForm from "./form";
 import StudentsExport from "./export";
 import StudentsImport from "./import";
-import { reloadSearch } from "../functions";
+import Notifications from "../../commons/notifications";
+import { reloadSearch, showNotifications } from "../functions";
 
 class StudentsIndex extends Component {
   constructor(props) {
@@ -36,11 +37,13 @@ class StudentsIndex extends Component {
     };
 
     this.reloadSearch = reloadSearch.bind(this);
+    this.showNotifications = showNotifications.bind(this);
   }
   render() {
     return (
       <SearchkitProvider searchkit={this.state.searchkit}>
         <MDBContainer className="mt-5">
+          <Notifications ref="notifications" />
           <MDBRow>
             <MDBCol md="12">
               <MDBCard>
@@ -116,15 +119,20 @@ class StudentsIndex extends Component {
                       bg="bg-warning"
                       title="Agregar Estudiante"
                       reloadSearch={this.reloadSearch}
+                      showNotifications={this.showNotifications}
                     />
-                    <StudentsExport />
-                    <StudentsImport />
+                    <StudentsExport
+                      showNotifications={this.showNotifications}
+                    />
+                    <StudentsImport
+                      showNotifications={this.showNotifications}
+                    />
                   </MDBBtnGroup>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
           </MDBRow>
-          <Hits hitsPerPage={12} listComponent={<StudentsHits />} />
+          <Hits hitsPerPage={16} listComponent={<StudentsHits />} />
           <NoHits
             translations={{
               "NoHits.NoResultsFound":
