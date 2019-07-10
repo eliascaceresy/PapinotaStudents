@@ -18,7 +18,7 @@ class StudentsHit extends Component {
   render() {
     const { student } = this.state;
     return (
-      <MDBCol md="4" lg="4" xs="6" sm="6">
+      <MDBCol xs="6" sm="6" md="4" lg="3">
         <MDBCard className="mt-3 card-hover-shadow">
           <MDBCardBody>
             <MDBRow>

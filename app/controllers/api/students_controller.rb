@@ -27,7 +27,9 @@ class Api::StudentsController < ApplicationController
   end
 
   def export_students
-    if params[:user_email].present? && EmailValidator.valid?(params[:user_email])
+    if !Student.any?
+      render json: { message: "No hay estudiantes registrados en la plataforma." }, status: 404
+    elsif params[:user_email].present? && EmailValidator.valid?(params[:user_email])
       Student::ExportJob.perform_later(params[:user_email])
       render json: { message: "Se notificará via email cuando el reporte se haya generado" }, status: 200
     else

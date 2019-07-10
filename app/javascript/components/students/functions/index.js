@@ -68,11 +68,26 @@ export function handleSubmit() {
     if (response.status === 201) {
       _this.toggle();
       _this.props.reloadSearch();
+      _this.props.showNotifications(
+        "Genial!",
+        "Estudiante guardado con éxito!",
+        "success"
+      );
     } else if (response.status === 200) {
       _this.toggle();
       _this.props.updateHit(response.data);
+      _this.props.showNotifications(
+        "Genial!",
+        "Estudiante guardado con éxito!",
+        "success"
+      );
     } else if (response.status === 422) {
       _this.setErrors(response.data);
+      _this.props.showNotifications(
+        "Ops!",
+        "Hubo errores al guardar la información!",
+        "danger"
+      );
     }
   });
 }
@@ -96,9 +111,17 @@ export function handleExport() {
   exportStudents(formData, response => {
     if (response.status === 200) {
       _this.toggle();
+      _this.props.showNotifications("Genial", response.data.message, "success");
     } else if (response.status === 422) {
       user_email.errors = response.data.errors;
       _this.setState({ user_email });
+      _this.props.showNotifications(
+        "Ops!",
+        "Hubo errores al exportar la Nómina!",
+        "danger"
+      );
+    } else if (response.status === 404) {
+      _this.props.showNotifications("Ops!", response.data.message, "danger");
     }
   });
 }
@@ -121,11 +144,20 @@ export function handleImport() {
   importStudents(formData, response => {
     if (response.status === 200) {
       _this.toggle();
+      _this.props.showNotifications("Genial", response.data.message, "success");
     } else if (response.status === 422) {
-      console.log(response);
       user_email.errors = response.data.user_email;
       students_document.errors = response.data.students_document;
       _this.setState({ user_email, students_document });
+      _this.props.showNotifications(
+        "Ops!",
+        "Hubo errores al importar la Nómina!",
+        "danger"
+      );
     }
   });
+}
+
+export function showNotifications(title, message, type) {
+  this.refs.notifications.addNotification(title, message, type);
 }

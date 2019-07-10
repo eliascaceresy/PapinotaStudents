@@ -12,33 +12,35 @@ wb.add_worksheet(name: "Nomina Estudiantes", page_margins: { left: 0.2, right: 0
   sheet.add_row ["", "", "", "", "", ""]
   sheet.add_row ["", "", "",
                  "N° Lista",
-                 "Nombre Completo",
+                 "Nombres",
+                 "Apellidos",
                  "RUT"
                 ]
 
   students.each do |student|
     sheet.add_row ["", "", "",
                     student.list_number,
-                    student.personal_information.full_name,
+                    student.personal_information.first_name,
+                    student.personal_information.last_name,
                     student.personal_information.identification_number
                   ]
   end
   ############################################## GENERAL STYLES ##############################################
-  sheet.column_widths nil, nil, nil, 15, 20, 15
+  sheet.column_widths nil, nil, nil, 15, 20, 15, 15
 
   sheet.merge_cells "D4:F4"
   sheet.add_border "D4:F4", [:bottom]
   sheet.add_style "D4:F4", b: true, sz: 12, fg_color: "FF", bg_color: "33b5e5", alignment: { horizontal: :center }
 
-  sheet.auto_filter = "D7:F7"
-  sheet.add_style "D7:F7", b: true,
+  sheet.auto_filter = "D7:G7"
+  sheet.add_style "D7:G7", b: true,
                             sz: 12,
                             bg_color: "33b5e5",
                             fg_color: "FF",
                             border: Axlsx::STYLE_THIN_BORDER,
                             alignment: { horizontal: :center }
 
-  sheet.add_style "D8:F#{students.count + 7}", sz: 11,
+  sheet.add_style "D8:G#{students.count + 7}", sz: 11,
                                                           border: { style: :thin, color: "00" },
                                                           alignment: { horizontal: :left,
                                                                        vertical: :center }
