@@ -1,3 +1,6 @@
+# Architecture of Application
+ For to view an image of architecture of application, you can see https://drive.google.com/open?id=1ZbhRVMi4hDBapIARPaA0Umzky96fPe1f
+
 # Steps to follow for the lifting of the application PapinotasStudents
 
 ## Requirements
